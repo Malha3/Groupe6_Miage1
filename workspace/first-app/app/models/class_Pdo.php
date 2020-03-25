@@ -33,17 +33,9 @@ class PdoGm{
 		return PdoGm::$monPdo;  
     }
 
-
-
-	public function getInfosVisiteur($login, $mdp){
-		$req = "select visiteur.id as id, visiteur.nom as nom, visiteur.prenom as prenom from visiteur 
-		where visiteur.login='$login' and visiteur.mdp='$mdp'";
-		$rs = PdoGsb::$monPdo->query($req);
-		$ligne = $rs->fetch();
-		return $ligne;
-	}
 public function verification_Utilisateur($login,$password)
 {
+	$carotte = false;
 	
 	try
 	{
@@ -73,64 +65,16 @@ public function verification_Utilisateur($login,$password)
 	}
 	else
 	{
-			session_start();
+			//session_start();
 			$_SESSION['idOpérateur'] = $resultat['idOpérateur'];
-			$_SESSION['login'] = $login;
+			//$_SESSION['login'] = $login;
 			echo 'Vous êtes connecté !';
+			$carotte = true;
 		}
-		
+	
+	return $carotte;		
 }
 
-
-
-
-
-/*
-$present = false;
-//$reqOperateur = $conn->query('SELECT login,mdp FROM opérateur');
-$conn=PdoGm::$monPdo = new PDO(PdoGm::$serveur.';'.PdoGm::$bdd, PdoGm::$user, PdoGm::$mdp); 
-
-$rsOperateur = $conn->query('SELECT login,mdp FROM opérateur');
-
-while($ligne=$rsOperateur->fetch_All()) {
-    
-    if($ligne['login']==$login && $ligne['mdp']==$password){
-        $present=true;
-    }
-
-}
-
-if($present=false){
-   // $reqGestionnaire = $conn->query('SELECT login, mdp FROM gestionnaire');
-
-    $rsGestionnaire = $conn->query('SELECT login, mdp FROM gestionnaire');
-
-    
-    while($ligne=$rsGestionnaire->fetch()) {
-        if($ligne['login']==$login && $login['mdp']==$password){
-            $present=true;
-        }
-    }
-}
-else{
-    if($present =false){
-        //$reqEmploye = $conn->query('SELECT login, mdp FROM employe');
-
-        $rsEmploye = $conn->query('SELECT login, mdp FROM employe');
-
-    
-        while($ligne=$rsEmploye->fetch()) {
-            if($ligne['login']==$login && $login['mdp']==$password){
-                $present=true;
-            }
-
-        }
-    }
-}
-//$conn->close();
-
-return $present;
-}*/
 }
 
 ?>
