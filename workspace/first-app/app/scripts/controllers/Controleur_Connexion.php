@@ -18,14 +18,14 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
         $_SESSION['password'] = $_POST['password'];
 
     // on redirige notre visiteur vers une page de notre section membre
-        include ('C:\xampp\htdocs\workspace\first-app\app\views\Accueil.php');
+        require_once ('C:\xampp\htdocs\workspace\first-app\app\views\Accueil.php');
     }
     else
         if(PdoGm::verification_Utilisateur($login,$password)==false){
         // Le visiteur n'a pas été reconnu comme étant membre de notre site. On utilise alors un petit javascript lui signalant ce fait
                echo '<body onLoad="alert(\'Membre non reconnu...\')">';
         // puis on le redirige vers la page d'accueil
-            include  ('C:\xampp\htdocs\workspace\first-app\app\views\Connexion.php');
+            require_once ('C:\xampp\htdocs\workspace\first-app\app\views\Connexion.php');
         }
     }
 
