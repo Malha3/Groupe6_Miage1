@@ -1,5 +1,0 @@
-Bonjour,
-
-Pour installer le projet (workspace) doit etre mis dans le lecteur C
-
-Merci
